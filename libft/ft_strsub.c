@@ -3,34 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemay <tdemay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:04:32 by tdemay            #+#    #+#             */
-/*   Updated: 2013/11/19 16:04:32 by tdemay           ###   ########.fr       */
+/*   Created: 2014/11/04 17:13:57 by frcugy            #+#    #+#             */
+/*   Updated: 2015/04/28 14:03:34 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char		*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	*fresh_cpy;
+	char	*fraiche;
 	size_t	i;
 
-	fresh_cpy = (char *)malloc((len + 1) * sizeof(char));
-	if (len && s)
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	if (!(fraiche = (char*)malloc(sizeof(char) * len + 1)))
+		return (NULL);
+	while (i < len)
 	{
-		i = 0;
-		if (fresh_cpy && (len <= ft_strlen(s)))
-		{
-			while (s[start] && i < len)
-			{
-				fresh_cpy[i] = s[start];
-				start++;
-				i++;
-			}
-			fresh_cpy[i] = '\0';
-		}
+		fraiche[i] = s[start];
+		start++;
+		i++;
 	}
-	return (fresh_cpy);
+	fraiche[i] = '\0';
+	return (fraiche);
 }

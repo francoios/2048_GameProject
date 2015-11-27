@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_tab_cpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 16:35:17 by frcugy            #+#    #+#             */
-/*   Updated: 2015/04/28 13:58:50 by frcugy           ###   ########.fr       */
+/*   Created: 2015/05/12 13:46:26 by frcugy            #+#    #+#             */
+/*   Updated: 2015/05/12 13:49:19 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+char		**ft_tab_cpy(char **tab)
 {
-	size_t i;
+	int			i;
+	char		**new_tab;
 
-	i = 0;
-	while (i < n)
-	{
-		if (*((unsigned char *)s1 + i) != *((unsigned char *)s2 + i))
-			return (*((unsigned char *)s1 + i) - *((unsigned char *)s2 + i));
-		i++;
-	}
-	return (0);
+	i = -1;
+	new_tab = (char **)malloc(sizeof(char *) * tab_lenght(tab) + 1);
+	while (tab[++i])
+		new_tab[i] = ft_strdup(tab[i]);
+	new_tab[i] = NULL;
+	return (new_tab);
 }

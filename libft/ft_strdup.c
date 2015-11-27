@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:01:55 by tdemay            #+#    #+#             */
-/*   Updated: 2015/02/28 14:02:11 by frcugy           ###   ########.fr       */
+/*   Created: 2014/11/03 17:54:33 by frcugy            #+#    #+#             */
+/*   Updated: 2015/04/28 14:01:02 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char		*ft_strdup(const char *s1)
 {
 	char	*s2;
 	int		i;

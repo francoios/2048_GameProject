@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemay <tdemay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:03:07 by tdemay            #+#    #+#             */
-/*   Updated: 2013/11/19 16:03:08 by tdemay           ###   ########.fr       */
+/*   Created: 2014/11/06 11:01:33 by frcugy            #+#    #+#             */
+/*   Updated: 2015/04/28 13:59:35 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl(char const *s)
+void		ft_putendl(char const *s)
 {
-	ft_putstr((char *)s);
+	ft_putstr(s);
 	ft_putchar('\n');
 }

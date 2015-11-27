@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemay <tdemay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:04:32 by tdemay            #+#    #+#             */
-/*   Updated: 2013/11/19 16:04:32 by tdemay           ###   ########.fr       */
+/*   Created: 2014/11/03 11:17:13 by frcugy            #+#    #+#             */
+/*   Updated: 2015/04/28 13:59:06 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_memdel(void **ap)
+void		ft_memdel(void **ap)
 {
-	free(*ap);
+	free((void*)*ap);
 	*ap = NULL;
 }

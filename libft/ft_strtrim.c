@@ -3,46 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemay <tdemay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:04:32 by tdemay            #+#    #+#             */
-/*   Updated: 2015/01/24 18:44:47 by tdemay           ###   ########.fr       */
+/*   Created: 2014/11/04 17:38:17 by frcugy            #+#    #+#             */
+/*   Updated: 2015/04/28 14:03:48 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static	int		ft_white_s(char c)
+char		*ft_strtrim(char const *s)
 {
-	if (c == ' ' || c == '\n' || c == '\t')
-		return (1);
-	return (0);
-}
+	char			*fraiche;
+	unsigned int	i;
+	int				b;
+	int				c;
 
-char			*ft_strtrim(char const *s)
-{
-	char		*tmp;
-	size_t		len;
-
-	if (s)
+	b = 0;
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	c = ft_strlen(s) - 1;
+	if (!(fraiche = (char*)malloc(ft_strlen(s) + 1)))
+		return (NULL);
+	while (ft_isspace(s[i]))
+		i++;
+	if (s[i] == '\0')
+		return (ft_strnew(1));
+	while (s[b])
 	{
-		tmp = (char *)s;
-		while (ft_white_s(*tmp))
-		{
-			tmp++;
-		}
-		len = ft_strlen(tmp);
-		if (len)
-		{
-			while (ft_white_s(tmp[--len]) || *tmp == '\0')
-				;
-			tmp = ft_strsub(tmp, 0, (len + 1));
-		}
-		else
-		{
-			tmp = ft_strnew(1);
-		}
-		return (tmp);
+		if (ft_isspace(s[c]) == 1)
+			c--;
+		b++;
 	}
-	return (NULL);
+	c = c - i + 1;
+	fraiche = ft_strsub(s, i, c);
+	return (fraiche);
 }

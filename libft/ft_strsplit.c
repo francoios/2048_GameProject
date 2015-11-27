@@ -3,67 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemay <tdemay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:03:07 by tdemay            #+#    #+#             */
-/*   Updated: 2015/02/28 15:30:12 by tdemay           ###   ########.fr       */
+/*   Created: 2014/11/03 11:18:50 by frcugy            #+#    #+#             */
+/*   Updated: 2015/04/28 14:03:14 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		**ft_modtab(char **tab, char *mot, int len)
+static size_t			ft_wordscount(char *s, char c)
 {
-	char	**tmp;
-	int		i;
-	int		k;
+	size_t				nb;
 
-	tmp = (char **)malloc((len + 1) * sizeof(char *));
-	if (tmp)
+	while (*s && *s == c)
+		s++;
+	nb = (*s ? 1 : 0);
+	while (*s)
 	{
-		ft_bzero(tmp, (len + 1));
-		i = 0;
-		k = 0;
-		while (tab && (i < len))
-		{
-			if (tab[i])
-			{
-				tmp[k] = tab[i];
-				tab[i] = NULL;
-				k++;
-			}
-			i++;
-		}
-		tmp[k] = mot;
-		tmp[k + 1] = NULL;
+		if (*s == c && *(s + 1) && *(s + 1) != c)
+			nb++;
+		s++;
 	}
-	return (tmp);
+	return (nb);
 }
 
-char			**ft_strsplit(char const *s, char c)
+char					**ft_strsplit(char const *s, char c)
 {
-	int		i;
-	int		loop;
-	char	*tmp_mot;
-	char	**tmp_tab;
+	size_t				words;
+	char				*start;
+	char				**result;
 
-	tmp_tab = ft_modtab(NULL, NULL, 1);
-	tmp_mot = NULL;
-	loop = 0;
-	while (s && *s && tmp_tab)
+	if (s == NULL)
+		return (NULL);
+	words = ft_wordscount((char *)s, c);
+	if (!(result = (char **)malloc(sizeof(char *) * (words + 1))))
+		return (NULL);
+	start = (char *)s;
+	while (*s)
 	{
-		loop++;
-		i = 0;
-		while (*s == c && *s != '\0')
-			s++;
-		while (s[i] != c && s[i] != '\0')
-			i++;
-		if (i != 0)
+		if (*s == c)
 		{
-			tmp_mot = ft_strsub(s, 0, i);
-			tmp_tab = ft_modtab(tmp_tab, tmp_mot, loop);
+			if (start != s)
+				*(result++) = ft_strsub(start, 0, s - start);
+			start = (char *)s + 1;
 		}
-		s += i;
+		s++;
 	}
-	return (tmp_tab);
+	if (start != s)
+		*(result++) = ft_strsub(start, 0, s - start);
+	*result = NULL;
+	return (result - words);
 }

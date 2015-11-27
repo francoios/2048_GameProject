@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemay <tdemay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/25 13:24:04 by tdemay            #+#    #+#             */
-/*   Updated: 2015/01/26 11:21:26 by tdemay           ###   ########.fr       */
+/*   Created: 2014/11/10 14:51:11 by frcugy            #+#    #+#             */
+/*   Updated: 2015/04/28 13:58:19 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,25 @@
 
 t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list		*curnew;
-	t_list		*curnext;
+	t_list		*fraiche;
+	t_list		*cursor;
+	t_list		*tmp;
 
-	if (!lst || !f)
-		return (NULL);
-	curnext = ft_lstmap(lst->next, f);
-	lst = (*f)(lst);
-	if ((curnew = ft_lstnew(lst->content, lst->content_size)))
-		curnew->next = curnext;
-	else
-		return (NULL);
-	return (curnew);
+	if (lst && f)
+	{
+		tmp = f(lst);
+		if (!(fraiche = ft_lstnew(tmp->content, tmp->content_size)))
+			return (NULL);
+		cursor = fraiche;
+		while (lst->next)
+		{
+			tmp = f(lst->next);
+			if (!(fraiche->next = ft_lstnew(tmp->content, tmp->content_size)))
+				return (NULL);
+			lst = lst->next;
+			fraiche = fraiche->next;
+		}
+		return (cursor);
+	}
+	return (NULL);
 }

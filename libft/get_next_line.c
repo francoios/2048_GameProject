@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemay <tdemay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/05 11:53:31 by tdemay            #+#    #+#             */
-/*   Updated: 2015/02/28 16:00:01 by tdemay           ###   ########.fr       */
+/*   Created: 2014/11/12 11:17:34 by frcugy            #+#    #+#             */
+/*   Updated: 2015/10/29 14:31:11 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void					free_chain(t_fd *fdptr)
 		*fdptr->begin = fdptr->next;
 	if (fdptr->next)
 		fdptr->next->prev = fdptr->prev;
-	free (fdptr->original_ptr);
-	free (fdptr);
+	free(fdptr->original_ptr);
+	free(fdptr);
 }
 
 t_fd					*get_fd_ptr(int fd)

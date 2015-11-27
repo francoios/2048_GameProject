@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_unsigned_putnbr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 16:35:17 by frcugy            #+#    #+#             */
-/*   Updated: 2015/04/28 13:58:50 by frcugy           ###   ########.fr       */
+/*   Created: 2014/12/30 12:06:47 by frcugy            #+#    #+#             */
+/*   Updated: 2015/04/28 14:04:05 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+void		ft_unsigned_putnbr(unsigned int n)
 {
-	size_t i;
-
-	i = 0;
-	while (i < n)
+	if (n >= 10)
 	{
-		if (*((unsigned char *)s1 + i) != *((unsigned char *)s2 + i))
-			return (*((unsigned char *)s1 + i) - *((unsigned char *)s2 + i));
-		i++;
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
 	}
-	return (0);
+	else
+		ft_putchar(n + '0');
 }

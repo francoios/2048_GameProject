@@ -3,54 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemay <tdemay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:04:41 by tdemay            #+#    #+#             */
-/*   Updated: 2013/11/19 16:04:41 by tdemay           ###   ########.fr       */
+/*   Created: 2014/11/15 17:16:58 by frcugy            #+#    #+#             */
+/*   Updated: 2015/04/28 13:56:37 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		ft_spe(int c)
+static int	ft_ispace(int c)
 {
-	char	*buf;
-	int		i;
-
-	buf = "\n\v\t\r\f ";
-	i = 0;
-	while (i < 6)
-	{
-		if (buf[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
+	return ((9 <= c && c <= 13) || c == 32);
 }
 
-int				ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
-	int		nb;
-	int		neg;
+	int n;
+	int isneg;
 
-	nb = 0;
-	neg = 1;
-	while (ft_spe(*str))
+	isneg = 0;
+	n = 0;
+	while (ft_ispace(*str))
 		str++;
-	while ((*str == '+' || *str == '-') && neg == 1)
+	if (*str == '+')
+		str++;
+	else if (*str == '-')
 	{
-		if (*str == '-' || *(str + 1) == '+')
-		{
-			neg = -1;
-			if (*(str - 1) == '+')
-				str--;
-		}
+		isneg = 1;
 		str++;
 	}
-	while (*str && ft_isdigit(*str))
+	while (*str != '\0' && ft_isdigit(*str))
 	{
-		nb = nb * 10 + (*str) - '0';
-		str++;
+		n = n * 10 + (*str++ - '0');
 	}
-	return (nb * neg);
+	if (isneg)
+		return (-n);
+	else
+		return (n);
 }

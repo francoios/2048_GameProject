@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 16:35:17 by frcugy            #+#    #+#             */
-/*   Updated: 2015/04/28 13:58:50 by frcugy           ###   ########.fr       */
+/*   Created: 2014/12/18 14:51:00 by frcugy            #+#    #+#             */
+/*   Updated: 2015/10/29 17:05:44 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+void		ft_putnbr_base(int nb, char *base)
 {
-	size_t i;
-
-	i = 0;
-	while (i < n)
+	if (nb < 0)
 	{
-		if (*((unsigned char *)s1 + i) != *((unsigned char *)s2 + i))
-			return (*((unsigned char *)s1 + i) - *((unsigned char *)s2 + i));
-		i++;
+		ft_putchar('-');
+		nb = -nb;
 	}
-	return (0);
+	if (nb >= (int)ft_strlen(base))
+	{
+		ft_putnbr_base(nb / ft_strlen(base), base);
+		ft_putnbr_base(nb % ft_strlen(base), base);
+	}
+	else
+	{
+		ft_putchar(base[nb]);
+	}
 }

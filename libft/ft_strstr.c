@@ -3,26 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdemay <tdemay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:03:19 by tdemay            #+#    #+#             */
-/*   Updated: 2015/01/25 12:09:42 by tdemay           ###   ########.fr       */
+/*   Created: 2014/11/04 11:03:20 by frcugy            #+#    #+#             */
+/*   Updated: 2015/04/28 14:03:22 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *s1, const char *s2)
+char		*ft_strstr(const char *s1, const char *s2)
 {
-	size_t	len;
+	size_t a;
+	size_t b;
 
-	if (*s2 == '\0')
-		return ((char *)s1);
-	len = ft_strlen(s2);
-	while (*s1)
+	a = 0;
+	b = 0;
+	if (!*s2)
+		return ((char*)s1);
+	while (s1[a])
 	{
-		if (!ft_memcmp(s1++, s2, len))
-			return ((char *)s1 - 1);
+		while (s1[a + b] && s1[a + b] == s2[b])
+			b++;
+		if (!s2[b])
+			return ((char *)s1 + a);
+		else
+			b = 0;
+		a++;
 	}
 	return (NULL);
 }

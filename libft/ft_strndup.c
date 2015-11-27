@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frcugy <frcugy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 16:35:17 by frcugy            #+#    #+#             */
-/*   Updated: 2015/04/28 13:58:50 by frcugy           ###   ########.fr       */
+/*   Created: 2015/05/12 14:20:47 by frcugy            #+#    #+#             */
+/*   Updated: 2015/05/12 14:37:29 by frcugy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+char		*ft_strndup(char *str, int n)
 {
-	size_t i;
+	char *dst;
 
-	i = 0;
-	while (i < n)
-	{
-		if (*((unsigned char *)s1 + i) != *((unsigned char *)s2 + i))
-			return (*((unsigned char *)s1 + i) - *((unsigned char *)s2 + i));
-		i++;
-	}
-	return (0);
+	dst = (char *)malloc(sizeof(char) * n + 1);
+	dst = ft_strncpy(dst, str, n);
+	dst[n] = '\0';
+	return (dst);
 }
